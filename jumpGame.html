@@ -1,4 +1,13 @@
-var canvas = document.getElementById("mainCanvas");
+<!DOCTYPE html>
+<html>
+<head>
+<style>canvas{background: #FFCC99}</style>
+</head>
+<body>
+<!--https://github.com/magejets/jump-game!-->
+<canvas id="mainCanvas" width = "480" height = "320"></canvas>
+<button onClick = "start()">START</button>
+<script>var canvas = document.getElementById("mainCanvas");
 var ctx = canvas.getContext("2d");
 var x = 240;
 var y = 160;
@@ -78,3 +87,6 @@ function draw () {
   score += 0.01;
 }
 setInterval(draw,10);
+</script>
+</body>
+</html>
