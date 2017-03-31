@@ -37,11 +37,30 @@ function keyUpHandler(e) {
     up = false;
   }
 }
+function edgeColl (){
+  if(x>canvas.width-playerRadius){
+    x-=2;
+  }
+  if(x<playerRadius){
+    x+=2;
+  }
+  if(y<playerRadius){
+    y+=4;
+  }
+}
 function dispScore(){
   ctx.beginPath();
   ctx.font = "20px Arial"
-  ctx.fillText("Score:"+Math.floor(score),0,20);
-  ctx.fillStyle = "blue"
+  ctx.fillText("Score: "+Math.floor(score),0,20);
+  ctx.fillStyle = "white"
+  ctx.fill();
+  ctx.closePath();
+}
+function deathMessage (){
+  ctx.beginPath();
+  ctx.font = "40px Times"
+  ctx.fillText("YOU DIED",140,160);
+  ctx.fillStyle = "red"
   ctx.fill();
   ctx.closePath();
 }
@@ -56,11 +75,14 @@ function draw () {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   if(playerStatus==true){
     drawPlayer();
+    dispScore();
+    edgeColl();
   }
   if(playerStatus==false){
     score = 0;
+    deathMessage();
   }
-  dispScore();
+  
   y+=2;
   if(y > canvas.height-playerRadius){
     playerStatus = false;
